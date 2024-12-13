@@ -1,10 +1,29 @@
-from pydantic import BaseModel
+from re import search
 from datetime import datetime as dt
-from typing import Union
 from abc import ABC, abstractmethod
+from pydantic import BaseModel
+from typing import Union
+from server_app import *
 from server_app.misc import *
 
 class DiaryEntry(ABC):
+    description: str    
+    title : Union[str,None] = ''
+    job : Union[str,None] = None
+    data : Union[list[str],None] = []
+
+    def parse_data(self):
+        data = list_map(self.description.split(','))
+        split_data_0 = data[0].split()
+        if(len(split_data_0)>1 and search('[a-zA-Z0-9][0-9][0-9][0-9]',split_data_0[0])):
+            self.job = split_data_0[0]
+            self.title = ' '.join(split_data_0[1:])
+        else:            
+            self.title = data[0]    
+
+        if(len(data)>1):
+            self.data.extend(list_map(data[1].split('&&')))
+
     @abstractmethod
     def get_context(self):
         pass
@@ -12,30 +31,26 @@ class DiaryEntry(ABC):
 class Event(BaseModel,DiaryEntry):
     dt_stamp_start: dt
     dt_stamp_end: dt
-    description: str    
     level: Union[int, None] = None
     attended: Union[bool, None] = False
 
     def get_context(self):
-        data = list_map(self.description.split(','))
-
-        title = data[0]
-        desc = ''
-        if(len(data)>=1):
-            desc = data[1]
+        self.parse_data()
 
         return {
             'start_date':date_display(self.dt_stamp_start),
             'start_time':self.dt_stamp_start.time(),
             'end_date':date_display(self.dt_stamp_end),
             'end_time':self.dt_stamp_end.time(),
-            'title':title,
-            'description':desc,
+            'title':self.title,
+            'job':self.job,
+            'description':self.data,
             'level':self.level,
             'attended':self.attended,
             'lag_days': lag_display_days(start=self.dt_stamp_start,end=self.dt_stamp_end),
             'lag_hours': lag_display_hours(start=self.dt_stamp_start,end=self.dt_stamp_end),
-            'opacity': 100 if dt.now() <= self.dt_stamp_end else 50
+            'opacity': 100 if dt.now() <= self.dt_stamp_end else 50,
+            'card_class': 'border-info' if self.dt_stamp_start <= dt.now() <= self.dt_stamp_end else ''
         }
     
 class Task(BaseModel,DiaryEntry):
@@ -52,40 +67,43 @@ class Task(BaseModel,DiaryEntry):
         return False
 
     def get_context(self):
-        data = list_map(self.description.split(','))
-        
-        title = data[0]
-        desc = ''
-        if(len(data)>=1):
-            desc = data[1]
+        self.parse_data()
+        lag_days = lag_display_days(start=self.dt_stamp,end=dt.now())
+        lag_hours = lag_display_hours(start=self.dt_stamp,end=dt.now())
+        card_class = ''
+
+        if(self.is_complete == False):
+            if (lag_days ==0  and lag_hours >0):
+                card_class = 'border-info'
+            elif(1<=lag_days<=3):
+                card_class = 'border-warning'
+            elif(4<=lag_days<=7):
+                card_class = 'border-danger'
 
         return {
             'date':date_display(self.dt_stamp),
             'time':self.dt_stamp.time(),
-            'title':title,
-            'description':desc,
+            'title':self.title,
+            'job':self.job,
+            'description':self.data,
             'level':self.level,
             'complete':self.is_complete,
-            'lag_days': lag_display_days(start=self.dt_stamp,end=dt.now()),
-            'lag_hours':  lag_display_hours(start=self.dt_stamp,end=dt.now()),
-            'opacity': 50 if self.is_complete else 100
+            'lag_days': lag_days,
+            'lag_hours': lag_hours ,
+            'opacity': 50 if self.is_complete else 100,
+            'card_class': card_class
         }
     
 class Note(BaseModel,DiaryEntry):
-    description: str    
     level: Union[int, None] = None
 
     def get_context(self):
-        data = list_map(self.description.split(','))
-        
-        title = data[0]
-        desc = ''
-        if(len(data)>=1):
-            desc = data[1]
+        self.parse_data()
 
         return {
-            'title':title,
-            'description':desc,
+            'title':self.title,
+            'job':self.job,
+            'description':self.data,
             'level':self.level,
             'opacity': 75
         }

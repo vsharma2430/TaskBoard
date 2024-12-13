@@ -1,7 +1,12 @@
-<div class="card opacity-{{task.opacity}}" style="margin: 1%;min-width:31%;">
+<div class="card opacity-{{task.opacity}} {{task.card_class}}" style="margin: 1%;min-width:31%;">
     <div class="card-body">
-        <h5 class="card-title">{{task.title}}</h5>
-        <p class="card-text opacity-50">{{task.description}}</p>
+        {% with title=task.title,job=task.job %}
+            {% include "card_title.html" %}
+        {% endwith %}
+
+        {% with description=task.description %}
+            {% include "data_box.html" %}
+        {% endwith %}
 
         {% if task.link %}
             <a href="{{task.link}}" class="card-link">Link</a>

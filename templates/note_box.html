@@ -1,7 +1,12 @@
 <div class="card opacity-{{note.opacity}}" style="margin: 1rem;min-width:31%;">
     <div class="card-body">
-        <h5 class="card-title">{{note.title}}</h5>
-        <p class="card-text opacity-50">{{note.description}}</p>
+        {% with title=note.title,job=note.job %}
+            {% include "card_title.html" %}
+        {% endwith %}
+    
+        {% with description=note.description %}
+            {% include "data_box.html" %}
+        {% endwith %}
 
         {% if note.link %}
             <a href="{{note.link}}" class="card-link">Link</a>

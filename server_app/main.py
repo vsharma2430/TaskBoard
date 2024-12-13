@@ -9,12 +9,41 @@ from server_app.diary import get_diary_context
 
 # root
 @app.get('/',response_class=HTMLResponse)
-@app.get('/task/',response_class=HTMLResponse)
-@app.get('/event/',response_class=HTMLResponse)
 async def root(request: Request):
     diary = get_diary_context()
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
         context={**nav_context,**diary},
+    )
+
+@app.get('/task/',response_class=HTMLResponse)
+async def root(request: Request):
+    diary_context = 1
+    diary = get_diary_context(diary_context)
+
+    return templates.TemplateResponse(
+        request=request, 
+        name=template_home, 
+        context={**nav_context,**diary,'diary_context':diary_context},
+    )
+
+@app.get('/event/',response_class=HTMLResponse)
+async def root(request: Request):
+    diary_context = 2
+    diary = get_diary_context(diary_context)
+    return templates.TemplateResponse(
+        request=request, 
+        name=template_home, 
+        context={**nav_context,**diary,'diary_context':diary_context},
+    )
+
+@app.get('/note/',response_class=HTMLResponse)
+async def root(request: Request):
+    diary_context = 3
+    diary = get_diary_context(diary_context)
+    return templates.TemplateResponse(
+        request=request, 
+        name=template_home, 
+        context={**nav_context,**diary,'diary_context':diary_context},
     )

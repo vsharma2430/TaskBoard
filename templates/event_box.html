@@ -1,7 +1,12 @@
-<div class="card opacity-{{event.opacity}}" style="margin: 1rem;min-width:31%;">
+<div class="card opacity-{{event.opacity}} {{event.card_class}}" style="margin: 1rem;min-width:31%;">
     <div class="card-body">
-      <h5 class="card-title">{{event.title}}</h5>
-      <p class="card-text opacity-50">{{event.description}}</p>
+        {% with title=event.title,job=event.job %}
+            {% include "card_title.html" %}
+        {% endwith %}
+
+        {% with description=event.description %}
+            {% include "data_box.html" %}
+        {% endwith %}
 
         {% if event.link %}
             <a href="{{event.link}}" class="card-link">Link</a>
