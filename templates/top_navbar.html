@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+        <img src="/static/images/favicon.ico" alt="Logo" width="30" height="30" class="rounded d-inline-block align-text-top">
+            {% if nav_context %}
+                {% if nav_context.nav_title %}
+                    {{nav_context.nav_title}}
+                {% endif %}
+            {% else %}
+                TaskBoard
+            {% endif %}
+        </a>
+
+        {% if nav_context %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    {% for menu_item in nav_context.nav_list %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{menu_item.href}}">{{menu_item.caption}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <span class="navbar-text">
+            {% if title %}
+                {{title|title}}
+            {% endif %}
+        </span>
+
+    </div>
+  </nav>

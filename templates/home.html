@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html data-bs-theme="light">
+    <head>
+        {% include 'title.html' %}
+        {% include 'cdn_static.html' %}
+    </head>
+
+    <body>
+
+        {% include 'top_navbar.html' %}
+
+        <div class="d-flex" style="margin: 1%; margin-top: 4%;" >
+          <div class="card p-1" style="margin: 1%; width: 48%;">
+            <p class="display-6" style="margin: 1%;">TASKS</p>
+
+            <div class="d-flex flex-wrap justify-content-start" style="display:flex; flex-direction: row;" style="margin: 1%; width: 48%;">
+              {% for task in tasks %}
+                {% include 'task_box.html' %}
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="card p-1" style="margin: 1%; width: 24%;">
+            <p class="display-6" style="margin: 1%;">NOTES</p>
+            {% for note in notes %}
+              {% include 'note_box.html' %}
+            {% endfor %}
+          </div>
+
+          <div class="card p-1" style="margin: 1%; width: 24%;">
+            <p class="display-6" style="margin: 1%;">EVENTS</p>
+            {% for event in events %}
+              {% include 'event_box.html' %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <figure class="text-center">
+            <blockquote class="blockquote">
+              <p>“The single biggest problem in communication is the illusion that it has taken place.”</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              <cite title="Source Title">George Bernard Shaw</cite>
+            </figcaption>
+        </figure>
+
+        <figure class="text-center" style="margin-bottom: 2%;">
+          <blockquote class="blockquote">
+            <p>“Blessed is the man, who having nothing to say, abstains from giving wordy evidence of the fact.”</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            <cite title="Source Title">George Eliot</cite>
+          </figcaption>
+      </figure>
+
+      {% include 'bottom_bar.html' %}
+
+    </body>
+</html>

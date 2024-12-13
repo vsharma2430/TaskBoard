@@ -1,0 +1,27 @@
+<div class="card opacity-{{task.opacity}}" style="margin: 1%;min-width:31%;">
+    <div class="card-body">
+        <h5 class="card-title">{{task.title}}</h5>
+        <p class="card-text opacity-50">{{task.description}}</p>
+
+        {% if task.link %}
+            <a href="{{task.link}}" class="card-link">Link</a>
+        {% endif %}
+        
+    </div>
+
+    <div class="d-flex justify-content-between card-footer">
+        <div class="text-start">
+            {{task.date}}
+        </div>
+
+        <div class="text-end opacity-50" style="margin-left: 2%;">
+            {% if task.lag_days!=0 %}
+                {{task.lag_days}} days
+            {% endif %}
+            
+            {% if task.lag_hours!=0 %}
+                {{task.lag_hours}} hours
+            {% endif %}
+        </div>
+    </div>
+</div>

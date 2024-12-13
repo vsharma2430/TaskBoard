@@ -1,0 +1,31 @@
+<div class="card opacity-{{event.opacity}}" style="margin: 1rem;min-width:31%;">
+    <div class="card-body">
+      <h5 class="card-title">{{event.title}}</h5>
+      <p class="card-text opacity-50">{{event.description}}</p>
+
+        {% if event.link %}
+            <a href="{{event.link}}" class="card-link">Link</a>
+        {% endif %}
+      
+    </div>
+
+    <div class="d-flex justify-content-between card-footer">
+        <div class="text-start">
+            {{event.start_date}} 
+            {% if event.start_date != event.end_date %}
+                to {{event.end_date}}
+            {% endif %} 
+        </div>
+
+        <div class="text-end opacity-50" style="margin-left: 2%;">
+            
+            {% if event.lag_days!=0 %}
+                {{event.lag_days}} days
+            {% endif %}
+            
+            {% if event.lag_hours!=0 %}
+                {{event.lag_hours}} hours
+            {% endif %}
+        </div>
+    </div>
+</div>

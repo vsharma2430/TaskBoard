@@ -1,0 +1,11 @@
+<div class="card opacity-{{note.opacity}}" style="margin: 1rem;min-width:31%;">
+    <div class="card-body">
+        <h5 class="card-title">{{note.title}}</h5>
+        <p class="card-text opacity-50">{{note.description}}</p>
+
+        {% if note.link %}
+            <a href="{{note.link}}" class="card-link">Link</a>
+        {% endif %}
+      
+    </div>
+</div>
