@@ -1,0 +1,5 @@
+<div class="card-body">
+    {% for linkX in link %}
+        <a class="btn btn-secondary copy_text"  data-toggle="tooltip" title="Copy link" href="{{linkX.1}}">{{linkX.0}}</a>
+    {% endfor %}
+</div>

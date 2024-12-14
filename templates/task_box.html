@@ -1,6 +1,9 @@
 <div class="card opacity-{{task.opacity}} {{task.card_class}}" style="margin: 1%;min-width:31%;">
+    {% with job=task.job %}
+        {% include "card_header.html" %}
+    {% endwith %}
     <div class="card-body">
-        {% with title=task.title,job=task.job %}
+        {% with title=task.title %}
             {% include "card_title.html" %}
         {% endwith %}
 

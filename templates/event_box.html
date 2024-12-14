@@ -1,4 +1,7 @@
 <div class="card opacity-{{event.opacity}} {{event.card_class}}" style="margin: 1rem;min-width:31%;">
+    {% with job=event.job %}
+        {% include "card_header.html" %}
+    {% endwith %}
     <div class="card-body">
         {% with title=event.title,job=event.job %}
             {% include "card_title.html" %}
@@ -9,17 +12,22 @@
         {% endwith %}
 
         {% if event.link %}
-            <a href="{{event.link}}" class="card-link">Link</a>
+            {% with link=event.link %}
+                {% include "card_link.html" %}
+            {% endwith %}
         {% endif %}
       
     </div>
 
     <div class="d-flex justify-content-between card-footer">
         <div class="text-start">
-            {{event.start_date}} 
+            {{event.start_date}} ({{event.start_time}})
             {% if event.start_date != event.end_date %}
                 to {{event.end_date}}
+            {% else %}
+                to
             {% endif %} 
+            ({{event.end_time}})
         </div>
 
         <div class="text-end opacity-50" style="margin-left: 2%;">

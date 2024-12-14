@@ -11,18 +11,36 @@ class DiaryEntry(ABC):
     title : Union[str,None] = ''
     job : Union[str,None] = None
     data : Union[list[str],None] = []
+    link : Union[list[tuple],None] = []
 
     def parse_data(self):
         data = list_map(self.description.split(','))
         split_data_0 = data[0].split()
-        if(len(split_data_0)>1 and search('[a-zA-Z0-9][0-9][0-9][0-9]',split_data_0[0])):
+        if(len(split_data_0)>=1 and search('[a-zA-Z0-9][0-9]{3}',split_data_0[0])):
             self.job = split_data_0[0]
-            self.title = ' '.join(split_data_0[1:])
+            if(len(split_data_0)>1):
+                self.title = ' '.join(split_data_0[1:])
         else:            
             self.title = data[0]    
 
         if(len(data)>1):
-            self.data.extend(list_map(data[1].split('&&')))
+            data_list = list_map(data[1].split('&&'))
+            extracted_data = []
+            extracted_links = []
+
+            dataX:str
+            for dataX in data_list:
+                if('[' in  dataX and ']' in dataX):
+                    start_index = dataX.find('[')
+                    link_data = list_map(dataX[start_index:dataX.find(']')].split('->'))
+                    link_tuple = ('link',link_data[-1]) if len(link_data)==1 else (link_data[0].strip('['),link_data[1])
+                    extracted_links.append(link_tuple)
+                    extracted_data.append(dataX[:start_index])
+                else:
+                    extracted_data.append(dataX)
+
+            self.link.extend(extracted_links)
+            self.data.extend(extracted_data)
 
     @abstractmethod
     def get_context(self):
@@ -39,12 +57,13 @@ class Event(BaseModel,DiaryEntry):
 
         return {
             'start_date':date_display(self.dt_stamp_start),
-            'start_time':self.dt_stamp_start.time(),
+            'start_time':self.dt_stamp_start.strftime('%H:%M'),
             'end_date':date_display(self.dt_stamp_end),
-            'end_time':self.dt_stamp_end.time(),
+            'end_time':self.dt_stamp_end.strftime('%H:%M'),
             'title':self.title,
             'job':self.job,
             'description':self.data,
+            'link':self.link,
             'level':self.level,
             'attended':self.attended,
             'lag_days': lag_display_days(start=self.dt_stamp_start,end=self.dt_stamp_end),
@@ -86,6 +105,7 @@ class Task(BaseModel,DiaryEntry):
             'title':self.title,
             'job':self.job,
             'description':self.data,
+            'link':self.link,
             'level':self.level,
             'complete':self.is_complete,
             'lag_days': lag_days,
@@ -104,6 +124,7 @@ class Note(BaseModel,DiaryEntry):
             'title':self.title,
             'job':self.job,
             'description':self.data,
+            'link':self.link,
             'level':self.level,
             'opacity': 75
         }

@@ -7,6 +7,9 @@ from server_app.nav_bar import nav_context
 from server_app.misc import *
 from server_app.diary import get_diary_context
 
+page_context = {'mode':'dark' if 18 <= dt.now().time().hour <= 24 else 'light'}
+common_context = {**nav_context,**page_context}
+
 # root
 @app.get('/',response_class=HTMLResponse)
 async def root(request: Request):
@@ -14,7 +17,7 @@ async def root(request: Request):
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
-        context={**nav_context,**diary},
+        context={**common_context,**diary},
     )
 
 @app.get('/task/',response_class=HTMLResponse)
@@ -25,7 +28,7 @@ async def root(request: Request):
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
-        context={**nav_context,**diary,'diary_context':diary_context},
+        context={**common_context,**diary,'diary_context':diary_context},
     )
 
 @app.get('/event/',response_class=HTMLResponse)
@@ -35,7 +38,7 @@ async def root(request: Request):
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
-        context={**nav_context,**diary,'diary_context':diary_context},
+        context={**common_context,**diary,'diary_context':diary_context},
     )
 
 @app.get('/note/',response_class=HTMLResponse)
@@ -45,5 +48,5 @@ async def root(request: Request):
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
-        context={**nav_context,**diary,'diary_context':diary_context},
+        context={**common_context,**diary,'diary_context':diary_context},
     )

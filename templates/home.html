@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html data-bs-theme="dark">
+<html data-bs-theme="{{mode}}">
     <head>
         {% include 'title.html' %}
         {% include 'cdn_static.html' %}
+        <meta http-equiv="refresh" content="600">
     </head>
 
-    <body>
+    <body style="font-family:Fira Sans;">
 
         {% include 'top_navbar.html' %}
 
@@ -67,5 +68,21 @@
 
       {% include 'bottom_bar.html' %}
 
+      <script>
+        $('.copy_text').click(function (e) {
+          e.preventDefault();
+          var copyText = $(this).attr('href');
+
+          document.addEventListener('copy', function(e) {
+              e.clipboardData.setData('text/plain', copyText);
+              e.preventDefault();
+          }, true);
+
+          document.execCommand('copy');  
+          console.log('link copied : ', copyText);
+          alert('link copied : ' + copyText); 
+        });
+
+      </script>
     </body>
 </html>
