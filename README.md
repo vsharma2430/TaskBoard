@@ -59,4 +59,31 @@ Your bullet entries will be shown to you in a beautiful format and will be cooke
 ### Psychology
 Your manager may finally acknowledge the work you do.
 
-# Deployment (Coming soon)
+# Deployment 
+
+- Install Python 3.12+ from [Official Python website](https://www.python.org/downloads/).
+- Create a folder in your system 'TaskBoard'.
+- Open the terminal/command prompt in the folder location.
+- Clone this Git Repository to a desired folder.
+
+```custom_prefix(E:\TaskBoard>)
+git clone https://github.com/vsharma2430/TaskBoard
+```
+- Create a virtual environment for this project.
+
+```custom_prefix(E:\TaskBoard>)
+python -m venv .venv
+```
+- Activate virtual environment.(Done automatically by VS code)
+```custom_prefix(E:\TaskBoard>)
+E:\TaskBoard\.venv\Scripts\Activate.ps1
+```
+- Install dependencies.
+```custom_prefix((.venv) E:\TaskBoard>)
+pip install -r requirements.txt
+```
+- Run client.py
+```custom_prefix((.venv) E:\TaskBoard>)
+python client.py
+```
+- Go to the link to access the web app (http://localhost:8007/).
