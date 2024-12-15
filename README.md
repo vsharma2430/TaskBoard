@@ -44,6 +44,9 @@ If you complete this task you are allowed to cross this off by using '| done' ta
 
 `yyyy-mm-dd hh:mm:ss | heading , Told ya I'd complete this | done`
 
+#### Messed up the datetime ?
+It will be treated as if it was created right now.
+
 ### Events/Meetings
 
 Events are the bullet entries which have a timeline both start and end which should be mentioned.This could be a meeting with a nemesis or a inter-departmental coordination.

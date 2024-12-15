@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from typing import Union
 from server_app import *
 from server_app.misc import *
+from server_app.ui import *
 
 class DiaryEntry(ABC):
     description: str    
@@ -67,7 +68,7 @@ class Event(BaseModel,DiaryEntry):
             'attended':self.attended,
             'lag_days': lag_display_days(start=self.dt_stamp_start,end=self.dt_stamp_end),
             'lag_hours': lag_display_hours(start=self.dt_stamp_start,end=self.dt_stamp_end),
-            'opacity': 100 if dt.now() <= self.dt_stamp_end else 50,
+            'opacity': full_opacity if dt.now() <= self.dt_stamp_end else muted_opacity,
             'card_class': 'border-info' if self.dt_stamp_start <= dt.now() <= self.dt_stamp_end else ''
         }
     
@@ -109,7 +110,7 @@ class Task(BaseModel,DiaryEntry):
             'complete':self.is_complete,
             'lag_days': lag_days,
             'lag_hours': lag_hours ,
-            'opacity': 50 if self.is_complete else 100,
+            'opacity': muted_opacity if self.is_complete else full_opacity,
             'card_class': card_class
         }
     
@@ -125,5 +126,5 @@ class Note(BaseModel,DiaryEntry):
             'description':self.data,
             'link':self.link,
             'level':self.level,
-            'opacity': 75
+            'opacity': note_opacity
         }

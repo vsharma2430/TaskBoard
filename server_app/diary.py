@@ -13,11 +13,11 @@ def load_diary(file_location:str='diary.txt'):
         if(len_data >= 2):
             dtX : str = data_items[0]
             if('to' in dtX):
-                dts = list_map(list_obj=list_map(dtX.split('to')),fn=dt.fromisoformat)
+                dts = list_map(list_obj=list_map(dtX.split('to')),fn=dt_from_iso)
                 diary_objects.append(Event(dt_stamp_start=dts[0],dt_stamp_end=dts[1],description=data_items[1]))
             
             elif(dtX != '' or None):
-                diary_objects.append(Task(dt_stamp=dt.fromisoformat(data_items[0]),description=data_items[1]))
+                diary_objects.append(Task(dt_stamp=dt_from_iso(data_items[0]),description=data_items[1]))
                 if(len_data >=3):
                     diary_objects[-1].is_complete = Task.is_complete_status_parse(data_items[2])
         else:

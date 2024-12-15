@@ -1,3 +1,5 @@
+from datetime import datetime as dt
+
 def read_file(file_location:str):
     data = []
     with open(file_location, 'r') as file:
@@ -12,6 +14,13 @@ def find_all(a_str, sub):
         if start == -1: return
         yield start
         start += len(sub) # use start += 1 to find overlapping matches
+
+def dt_from_iso(data:str):
+    try:
+        return dt.fromisoformat(data)
+    except:
+        return dt.now()
+    
 
 clean_list = lambda list_obj:list([x for x in list_obj if x is not None])
 clean_list_str = lambda list_obj:list([x for x in list_obj if (x is not None and x != '')])
