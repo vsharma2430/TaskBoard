@@ -35,7 +35,6 @@ class DiaryEntry(ABC):
                     link_data = list_map(dataX[start_index:dataX.find(']')].split('->'))
                     link_tuple = ('link',link_data[-1]) if len(link_data)==1 else (link_data[0].strip('['),link_data[1])
                     extracted_links.append(link_tuple)
-                    extracted_data.append(dataX[:start_index])
                 else:
                     extracted_data.append(dataX)
 

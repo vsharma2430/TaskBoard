@@ -6,7 +6,7 @@ from server_app import *
 def load_diary(file_location:str='diary.txt'):
     diary_objects = []
     data = read_file(file_location=file_location)
-    for dataX in data :
+    for dataX in clean_list_str_diary(data) :
         data_items = list_map(dataX.split('|'))
         len_data = len(data_items)
         
