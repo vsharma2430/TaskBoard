@@ -24,7 +24,7 @@ You know what I'd like to grant you one. Here goes, join the two text using '&&'
 
 #### Break through !
 
-Strike through a entry or a sub entry by enclosing the text in <s> tag.
+Strike through a entry or a sub entry by enclosing the text in <s> </s> tag.
 
 `<s> Who did this ? </s>`
 
