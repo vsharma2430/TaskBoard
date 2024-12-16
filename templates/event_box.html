@@ -1,4 +1,4 @@
-<div class="card opacity-{{event.opacity}} {{event.card_class}}" style="margin: 1rem;min-width:31%;">
+<div class="card opacity-{{event.opacity}} {{event.card_class}}" style="margin: 1rem;min-width:20rem;">
     {% with job=event.job %}
         {% include "card_header.html" %}
     {% endwith %}
@@ -30,7 +30,7 @@
             ({{event.end_time}})
         </div>
 
-        <div class="text-end opacity-50" style="margin-left: 2%;">
+        <div class="text-end opacity-50" style="margin-left: 1rem;">
             
             {% if event.lag_days!=0 %}
                 {{event.lag_days}} days

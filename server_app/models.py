@@ -92,7 +92,7 @@ class Task(BaseModel,DiaryEntry):
         card_class = ''
 
         if(self.is_complete == False):
-            if (lag_days ==0  and lag_hours >0):
+            if (lag_days ==0):
                 card_class = 'border-info'
             elif(1<=lag_days<=3):
                 card_class = 'border-warning'

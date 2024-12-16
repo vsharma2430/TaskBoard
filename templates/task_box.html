@@ -1,4 +1,4 @@
-<div class="card opacity-{{task.opacity}} {{task.card_class}}" style="margin: 1%;min-width:31%;">
+<div class="card opacity-{{task.opacity}} {{task.card_class}}" style="margin: 1rem;min-width:15rem;">
     {% with job=task.job %}
         {% include "card_header.html" %}
     {% endwith %}
@@ -12,7 +12,9 @@
         {% endwith %}
 
         {% if task.link %}
-            <a href="{{task.link}}" class="card-link">Link</a>
+            {% with link=task.link %}
+                {% include "card_link.html" %}
+            {% endwith %}
         {% endif %}
         
     </div>
@@ -22,7 +24,7 @@
             {{task.date}}
         </div>
 
-        <div class="text-end opacity-50" style="margin-left: 2%;">
+        <div class="text-end opacity-50" style="margin-left: 1rem;">
             {% if task.lag_days!=0 %}
                 {{task.lag_days}} days
             {% endif %}

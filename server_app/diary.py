@@ -22,7 +22,6 @@ def load_diary(file_location:str='diary.txt'):
                     diary_objects[-1].is_complete = Task.is_complete_status_parse(data_items[2])
         else:
             diary_objects.append(Note(description=data_items[0]))
-
     return diary_objects
 
 def get_diary_context(sub_part:int=0):

@@ -1,4 +1,4 @@
-<div class="card opacity-{{note.opacity}}" style="margin: 1rem;min-width:31%;">
+<div class="card opacity-{{note.opacity}}" style="margin: 1rem;min-width:15rem;">
     <div class="card-body">
         {% with title=note.title,job=note.job %}
             {% include "card_title.html" %}
@@ -9,7 +9,9 @@
         {% endwith %}
 
         {% if note.link %}
-            <a href="{{note.link}}" class="card-link">Link</a>
+            {% with link=note.link %}
+                {% include "card_link.html" %}
+            {% endwith %}
         {% endif %}
       
     </div>

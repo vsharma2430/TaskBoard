@@ -27,6 +27,6 @@ clean_list_str = lambda list_obj:list([x for x in list_obj if (x is not None and
 clean_list_str_diary = lambda list_obj:list([x for x in list_obj if (x is not None and x != '' and x.startswith('#') == False)])
 list_map = lambda list_obj,fn=str.strip : list(map(fn,list_obj))
 date_display = lambda dtx : dtx.date().strftime("%d %b'%y")
-lag_display_days = lambda start,end: (end-start).days
-lag_display_hours = lambda start,end:  roundQuarter((end-start).seconds / 3600)
+lag_display_days = lambda start,end: (end-start).days if (end > start) else -1*(start-end).days
+lag_display_hours = lambda start,end:  roundQuarter((end-start).seconds / 3600) if (end > start) else -1*roundQuarter((start - end).seconds / 3600)
 roundQuarter = lambda x:round(x * 4) / 4.0
