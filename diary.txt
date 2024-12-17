@@ -1,20 +1,18 @@
 # NOTES
 PyDantic and FastAPI documentation 
-PyDesign , Python Data to STAAD loads && Continous beam formulation
+PyDesign , Python Data to STAAD loads , Continous beam formulation
 B416 Reference Job , Piperack && [Shared Folder -> \\10.40.43.94\b416]
 
 # TASKS
-2024-12-12 12:30:00 | Manhours Excel , Mail received from Sadhu sir | Done
-2024-12-12 09:30:00 | B957 Plot Plan && Piperack Length && ODC : General Civil && <s> Grading Drawings FGL </s> && Map FGL on Plot plan && <s> Navis (Annamalai) </s> && [Plot Plan -> \\10.40.43.94\b957\PLOT-PLAN] && [GADs -> \\10.40.43.94\b957\CIVIL-GAD] && [Navis -> D:\vaibhav\JOB_WORK\B957\NAVIS] && [ Piping Navis -> \\10.40.68.227\ppr\B957\S3D-MODEL ]
-2024-12-16 09:30:00 | B957 Existing Piperack data && Existing EDMS Job : 6743 && Old Plot Plan && Same NE? && [Fdn Layout -> \\10.40.43.94\b957\EXISTING_DATA\FDN_LAYOUTS] && [Piperack dwgs -> \\10.40.43.94\b957\EXISTING_DATA\PIPERACK]
-2024-12-09 12:30:00 | B957 Precast Building && Mortar Strength from Divya Maam |
-2024-12-20 09:00:00 | B957 Loads Study && Simple loads && Seismic and Wind Loads
-2024-12-20 09:30:00 | B957 Retaining Wall && [Drawings -> \\10.40.43.94\b957\RET_WALL]
-2024-12-16 09:00:00 | Resource Planner,Vivek Sir Follow Up && <s> A207 crash </s> && A283 report incorrect |
-2024-12-16 10:30:00 | STAAD Helper, <s> TestBatcher improvements </s> && TestBatcher defaults|Done
+2024-12-12 09:30:00 | B957 Plot Plan && Piperack , Piperack Length , ODC : General Civil , <s> Grading Drawings FGL </s> , Map FGL on Plot plan && <s> Navis (Annamalai) </s> && Manhours Excel , <s>Excel (Sadhu)</s> && [Plot Plan -> \\10.40.43.94\b957\PLOT-PLAN] && [GADs -> \\10.40.43.94\b957\CIVIL-GAD] && [Navis -> D:\vaibhav\JOB_WORK\B957\NAVIS] && [ Piping Navis -> \\10.40.68.227\ppr\B957\S3D-MODEL ]
+2024-12-16 09:30:00 | B957 Existing Piperack && EMDS Job : 6743, <s> Old Plot Plan  </s>, <s>Same NE?</s> && [Fdn Layout -> \\10.40.43.94\b957\EXISTING_DATA\FDN_LAYOUTS] && [Piperack dwgs -> \\10.40.43.94\b957\EXISTING_DATA\PIPERACK]
+2024-12-09 12:30:00 | B957 Bina , My Activities && Precast Struts , Mortar grade (Divya) , Excel Modification && Retaining Wall , Modeling in S3D && [Drawings Ret Wall -> \\10.40.43.94\b957\RET_WALL]
+2024-12-20 09:00:00 | B957 Learning && STAAD Loads , Simple loads , Seismic and Wind Loads (Arjit ?)
+2024-12-16 09:00:00 | 8581 Resource Planner && ITS ,<s> Vivek Sir Follow Up </s>, Sukhbir Sir Oracle user && Code , <s> A207 crash </s> , A283 report incorrect |
+2024-12-16 10:30:00 | STAAD Helper, <s> TestBatcher improvements </s> , <s> TestBatcher defaults </s> 
 
 # EVENTS / MEETINGS
 2024-12-12 08:30:00 to 2024-12-13 17:00:00 | bauma CONEXPO INDIA , construction equiment && [Website link -> https://bcindia.com/en/ ] && [ Registration link -> https://bcindia.com/en/trade-fair/get-your-ticket/ ]
-2024-12-13 11:15:00 to 2024-12-13 12:30:00 | Nemestcheck RISA , Multicore processing && SP3D Integration && API documentation follow-up 
+2024-12-13 11:15:00 to 2024-12-13 12:30:00 | Nemestcheck RISA , Multicore processing , SP3D Integration , API documentation follow-up 
 
 

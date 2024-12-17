@@ -7,14 +7,13 @@ from server_app.nav_bar import nav_context
 from server_app.misc import *
 from server_app.diary import get_diary_context
 
-page_context = {'mode':'dark' if 18 <= dt.now().time().hour <= 24 else 'light'}
+page_context = {'mode':'dark' if(18 <= dt.now().time().hour <= 24 or 0 <= dt.now().time().hour <= 8) else 'light'}
 common_context = {**nav_context,**page_context}
 
 # root
 @app.get('/',response_class=HTMLResponse)
 async def root(request: Request):
     diary = get_diary_context()
-    logger.info(diary)
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 

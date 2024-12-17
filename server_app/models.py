@@ -39,8 +39,18 @@ class DiaryEntry(ABC):
                     extracted_links.append(link_tuple)
                 else:
                     data_list = list_map(dataX.split(','))
-                    extracted_data.append({'title':data_list[0],'description':data_list[1:]} if(len(data_list)>0) else {'description':data_list})
 
+                    if(len(data_list) >1):
+                        all_complete = True
+                        for dataX in data_list[1:]:
+                            if(dataX.startswith('<s>') == False or dataX.endswith('</s>') == False):
+                                all_complete = False
+                        
+                        if(all_complete):
+                            data_list[0] = '<s>' + data_list[0] + '</s>'
+
+                    extracted_data.append({'title':data_list[0],'description':data_list[1:]} if(len(data_list)>1) else {'description':data_list})
+                    
             self.link.extend(extracted_links)
             self.data.extend(extracted_data)
 
@@ -50,6 +60,21 @@ class DiaryEntry(ABC):
             'data':self.data,
             'link':self.link
         }
+    
+    def auto_done(self):
+        done_data = True
+        logger.info(self.data)
+        for dataX in self.data:
+            check_list = []
+            if('title' in dataX):
+                check_list.append(dataX['title'])
+            if('description' in dataX):
+                check_list.extend(dataX['description'])
+            for checkX in check_list:
+                done_data = done_data and start_end_tag(checkX,'s') 
+
+        if(done_data):
+            self.is_complete = True
 
     @abstractmethod
     def get_context(self):
@@ -93,6 +118,8 @@ class Task(BaseModel,DiaryEntry):
 
     def get_context(self):
         self.parse_data()
+        self.auto_done()
+
         lag_days = lag_display_days(start=self.dt_stamp,end=dt.now())
         lag_hours = lag_display_hours(start=self.dt_stamp,end=dt.now())
         card_class = ''

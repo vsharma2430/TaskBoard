@@ -1,6 +1,6 @@
 {% if description|length == 1 %}
     {% for item in description %}
-        <p class="card-text opacity-50">{{item}}</p>
+        <p class="card-text opacity-50">{{item | safe}}</p>
     {% endfor %}
 {% else %}
     <ul class="list-group list-group-flush opacity-50">
