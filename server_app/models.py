@@ -9,38 +9,47 @@ from server_app.ui import *
 
 class DiaryEntry(ABC):
     description: str    
-    title : Union[str,None] = ''
-    job : Union[str,None] = None
-    data : Union[list[str],None] = []
-    link : Union[list[tuple],None] = []
+    job : Union[tuple,None] = None
+    data : Union[list,None] = []
+    link : Union[list,None] = []
+
+    #format -> job,job_desc && header1,data1 && header2,data2,data3 && [linkTitle1 -> link address1] && [linkTitle2 -> link address2] ...
 
     def parse_data(self):
-        data = list_map(self.description.split(','))
+        data = list_map(self.description.split('&&'))
+
         split_data_0 = data[0].split()
+        job_found = False
         if(len(split_data_0)>=1 and search('[a-zA-Z0-9][0-9]{3}',split_data_0[0])):
-            self.job = split_data_0[0]
-            if(len(split_data_0)>1):
-                self.title = ' '.join(split_data_0[1:])
-        else:            
-            self.title = data[0]    
+            self.job = (split_data_0[0],' '.join(split_data_0[1:]))
+            job_found = True
 
-        if(len(data)>1):
-            data_list = list_map(data[1].split('&&'))
-            extracted_data = []
-            extracted_links = []
-
+        extracted_data = []
+        extracted_links = []
+        data_start_index = 1 if job_found else 0
+        
+        if(len(data)>=data_start_index):
             dataX:str
-            for dataX in data_list:
+            for dataX in data[data_start_index:]:
+
                 if('[' in  dataX and ']' in dataX):
                     start_index = dataX.find('[')
                     link_data = list_map(dataX[start_index:dataX.find(']')].split('->'))
                     link_tuple = ('link',link_data[-1]) if len(link_data)==1 else (link_data[0].strip('['),link_data[1])
                     extracted_links.append(link_tuple)
                 else:
-                    extracted_data.append(dataX)
+                    data_list = list_map(dataX.split(','))
+                    extracted_data.append({'title':data_list[0],'description':data_list[1:]} if(len(data_list)>0) else {'description':data_list})
 
             self.link.extend(extracted_links)
             self.data.extend(extracted_data)
+
+    def get_subcontext(self):
+        return{
+            'job':self.job,
+            'data':self.data,
+            'link':self.link
+        }
 
     @abstractmethod
     def get_context(self):
@@ -56,14 +65,11 @@ class Event(BaseModel,DiaryEntry):
         self.parse_data()
 
         return {
+            **self.get_subcontext(),
             'start_date':date_display(self.dt_stamp_start),
             'start_time':self.dt_stamp_start.strftime('%H:%M'),
             'end_date':date_display(self.dt_stamp_end),
             'end_time':self.dt_stamp_end.strftime('%H:%M'),
-            'title':self.title,
-            'job':self.job,
-            'description':self.data,
-            'link':self.link,
             'level':self.level,
             'attended':self.attended,
             'lag_days': lag_display_days(start=self.dt_stamp_start,end=self.dt_stamp_end),
@@ -100,11 +106,9 @@ class Task(BaseModel,DiaryEntry):
                 card_class = 'border-danger'
 
         return {
+            **self.get_subcontext(),
             'date':date_display(self.dt_stamp),
             'time':self.dt_stamp.time(),
-            'title':self.title,
-            'job':self.job,
-            'description':self.data,
             'link':self.link,
             'level':self.level,
             'complete':self.is_complete,
@@ -121,10 +125,7 @@ class Note(BaseModel,DiaryEntry):
         self.parse_data()
 
         return {
-            'title':self.title,
-            'job':self.job,
-            'description':self.data,
-            'link':self.link,
+            **self.get_subcontext(),
             'level':self.level,
             'opacity': note_opacity
         }

@@ -2,22 +2,24 @@
     {% with job=event.job %}
         {% include "card_header.html" %}
     {% endwith %}
+
+    {% if event.data %}
+        {% with data = event.data %}
+            {% for item in data %}
+                {% with title = item.title,description=item.description%}
+                    {% include "card_body.html" %}
+                {% endwith %}
+            {% endfor %}
+        {% endwith %}
+    {% endif %}
+
     <div class="card-body">
-        {% with title=event.title,job=event.job %}
-            {% include "card_title.html" %}
-        {% endwith %}
-
-        {% with description=event.description %}
-            {% include "data_box.html" %}
-        {% endwith %}
-
         {% if event.link %}
             {% with link=event.link %}
                 {% include "card_link.html" %}
             {% endwith %}
         {% endif %}
-      
-    </div>
+     </div>
 
     <div class="d-flex justify-content-between card-footer">
         <div class="text-start">

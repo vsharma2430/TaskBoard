@@ -1,18 +1,23 @@
 <div class="card opacity-{{note.opacity}}" style="margin: 1rem;min-width:15rem;">
-    <div class="card-body">
-        {% with title=note.title,job=note.job %}
-            {% include "card_title.html" %}
-        {% endwith %}
+    {% with job=note.job %}
+        {% include "card_header.html" %}
+    {% endwith %}
     
-        {% with description=note.description %}
-            {% include "data_box.html" %}
+    {% if note.data %}
+        {% with data = note.data %}
+            {% for item in data %}
+                {% with title = item.title,description=item.description%}
+                    {% include "card_body.html" %}
+                {% endwith %}
+            {% endfor %}
         {% endwith %}
+    {% endif %}
 
+    <div class="card-body">
         {% if note.link %}
             {% with link=note.link %}
                 {% include "card_link.html" %}
             {% endwith %}
         {% endif %}
-      
     </div>
 </div>

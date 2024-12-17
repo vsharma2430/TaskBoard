@@ -14,6 +14,7 @@ common_context = {**nav_context,**page_context}
 @app.get('/',response_class=HTMLResponse)
 async def root(request: Request):
     diary = get_diary_context()
+    logger.info(diary)
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
