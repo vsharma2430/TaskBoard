@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html data-bs-theme="{{mode}}">
+    <head>
+        {% include 'title.html' %}
+        {% include 'cdn_static.html' %}
+        <meta http-equiv="refresh" content="600">
+    </head>
+
+    <body style="font-family:Fira Sans;">
+
+        {% include 'top_navbar.html' %}
+
+        {% include child_template %}
+
+        {% include 'bottom_bar.html' %}
+        
+    </body>
+</html>
