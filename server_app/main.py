@@ -17,7 +17,7 @@ async def root(request: Request):
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
-        context={**common_context,**diary},
+        context={**common_context,**diary,'diary_context':0},
     )
 
 @app.get('/task/',response_class=HTMLResponse)
@@ -57,5 +57,5 @@ async def root(request: Request):
     return templates.TemplateResponse(
         request=request, 
         name=template_home_diary, 
-        context={**common_context,'data':diary},
+        context={**common_context,'data':'\n'.join(diary)},
     )

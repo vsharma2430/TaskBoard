@@ -48,7 +48,9 @@
 
         </div>
 
-      {% include 'quotes.html' %}
+      {% if diary_context == 0 %}
+        {% include 'quotes.html' %}
+      {% endif %}
 
       {% include 'bottom_bar.html' %}
       
