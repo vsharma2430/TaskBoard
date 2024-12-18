@@ -48,41 +48,11 @@
 
         </div>
 
-        <figure class="text-center">
-            <blockquote class="blockquote">
-              <p>“The single biggest problem in communication is the illusion that it has taken place.”</p>
-            </blockquote>
-            <figcaption class="blockquote-footer">
-              <cite title="Source Title">George Bernard Shaw</cite>
-            </figcaption>
-        </figure>
-
-        <figure class="text-center" style="margin-bottom: 2%;">
-          <blockquote class="blockquote">
-            <p>“Blessed is the man, who having nothing to say, abstains from giving wordy evidence of the fact.”</p>
-          </blockquote>
-          <figcaption class="blockquote-footer">
-            <cite title="Source Title">George Eliot</cite>
-          </figcaption>
-      </figure>
+      {% include 'quotes.html' %}
 
       {% include 'bottom_bar.html' %}
+      
+      {% include 'copy_script.js' %}
 
-      <script>
-        $('.copy_text').click(function (e) {
-          e.preventDefault();
-          var copyText = $(this).attr('href');
-
-          document.addEventListener('copy', function(e) {
-              e.clipboardData.setData('text/plain', copyText);
-              e.preventDefault();
-          }, true);
-
-          document.execCommand('copy');  
-          console.log('link copied : ', copyText);
-          alert('link copied : ' + copyText); 
-        });
-
-      </script>
     </body>
 </html>

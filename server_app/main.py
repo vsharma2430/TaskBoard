@@ -50,3 +50,12 @@ async def root(request: Request):
         name=template_home, 
         context={**common_context,**diary,'diary_context':diary_context},
     )
+
+@app.get('/diary/',response_class=HTMLResponse)
+async def root(request: Request):
+    diary = read_file('diary.txt')
+    return templates.TemplateResponse(
+        request=request, 
+        name=template_home_diary, 
+        context={**common_context,'data':diary},
+    )

@@ -63,7 +63,6 @@ class DiaryEntry(ABC):
     
     def auto_done(self):
         done_data = True
-        logger.info(self.data)
         for dataX in self.data:
             check_list = []
             if('title' in dataX):
@@ -71,7 +70,7 @@ class DiaryEntry(ABC):
             if('description' in dataX):
                 check_list.extend(dataX['description'])
             for checkX in check_list:
-                done_data = done_data and start_end_tag(checkX,'s') 
+                done_data = done_data and check_start_end_tag(checkX,'s') 
 
         if(done_data):
             self.is_complete = True
