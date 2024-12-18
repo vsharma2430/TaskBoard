@@ -59,3 +59,11 @@ async def root(request: Request):
         name=template_home_diary, 
         context={**common_context,'data':'\n'.join(diary)},
     )
+
+@app.get('/help/',response_class=HTMLResponse)
+async def root(request: Request):
+    return templates.TemplateResponse(
+        request=request, 
+        name=template_home_help, 
+        context={**common_context},
+    )

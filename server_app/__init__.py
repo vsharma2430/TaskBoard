@@ -14,6 +14,7 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 templates = Jinja2Templates(directory='templates')
 template_home = 'home.html'
 template_home_diary = 'diary_home.html'
+template_home_help = 'help_home.html'
 
 #favicon and images
 favicon_path = f'static/images/favicon.ico'

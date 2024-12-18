@@ -1,5 +1,6 @@
 nav_props = {'nav_title':'TaskBoard',
-             'nav_list':[{ 'caption': 'Tasks' , 'href' : f'/task/' ,},
+             'nav_list':[{ 'caption': 'Home' , 'href' : f'/' ,},
+                        { 'caption': 'Tasks' , 'href' : f'/task/' ,},
                         { 'caption': 'Notes' , 'href' : f'/note/',},
                         { 'caption': 'Meetings','href' : f'/event/',},
                         { 'caption': 'Diary','href' : f'/diary/',},
