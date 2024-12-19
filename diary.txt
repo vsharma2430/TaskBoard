@@ -14,4 +14,4 @@ B416 Reference Job , Piperack && [Shared Folder -> \\10.40.43.94\b416]
 # EVENTS / MEETINGS
 2024-12-12 08:30:00 to 2024-12-13 17:00:00 | bauma CONEXPO INDIA , construction equiment && [Website link -> https://bcindia.com/en/ ] && [ Registration link -> https://bcindia.com/en/trade-fair/get-your-ticket/ ]
 2024-12-13 11:15:00 to 2024-12-13 12:30:00 | Nemestcheck RISA , Multicore processing , SP3D Integration , API documentation follow-up
-2024-12-19 15:45:00 to 2024-12-19 16:30:00 | B957 Plot Plan && General Civil , S Arvind Harish 
+2024-12-19 15:45:00 to 2024-12-19 16:30:00 | B957 Plot Plan && Gen Civil , S Arvind Harish
