@@ -7,9 +7,10 @@ from server_app import *
 from server_app.misc import *
 from server_app.ui import *
 
-class DiaryString(BaseModel):
+class DiaryUpdate(BaseModel):
     data : str
-    
+    password : str
+
 class DiaryEntry(ABC):
     description: str    
     job : Union[tuple,None] = None

@@ -61,9 +61,10 @@ async def root(request: Request):
     )
 
 @app.post('/diary/update/',response_class=JSONResponse)
-async def root(de:DiaryString): 
-    with open('diary.txt','w') as f:
-        f.write(de.data)
+async def root(du:DiaryUpdate): 
+    if(du.password == 'mypass'):
+        with open('diary.txt','w') as f:
+            f.write(du.data)
     return {'result':True}
 
 @app.get('/help/',response_class=HTMLResponse)
