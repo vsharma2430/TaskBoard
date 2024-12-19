@@ -1,5 +1,5 @@
 from datetime import datetime as dt
-from fastapi import FastAPI, Request,Response
+from fastapi import Request
 from fastapi.responses import HTMLResponse,JSONResponse,FileResponse
 from server_app import *
 from server_app.models import *
@@ -59,6 +59,12 @@ async def root(request: Request):
         name=template_home_diary, 
         context={**common_context,'data':'\n'.join(diary)},
     )
+
+@app.post('/diary/update/',response_class=JSONResponse)
+async def root(de:DiaryString): 
+    with open('diary.txt','w') as f:
+        f.write(de.data)
+    return {'result':True}
 
 @app.get('/help/',response_class=HTMLResponse)
 async def root(request: Request):

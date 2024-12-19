@@ -6,6 +6,7 @@ from server_app import *
 def load_diary(file_location:str='diary.txt'):
     diary_objects = []
     data = read_file(file_location=file_location)
+
     for dataX in clean_list_str_diary(data) :
         data_items = list_map(dataX.split('|'))
         len_data = len(data_items)
@@ -35,7 +36,7 @@ def get_diary_context(sub_part:int=0):
     task_list_obj.sort(key=lambda x: x.dt_stamp,reverse=False)
     task_list_obj.sort(key=lambda x: x.is_complete,reverse=False)
     
-    event_list_obj.sort(key=lambda x: (dt.now() - x.dt_stamp_start).seconds,reverse=False)
+    event_list_obj.sort(key=lambda x: (dt.now() - x.dt_stamp_start).seconds,reverse=True)
 
     note_list_obj.reverse()
 

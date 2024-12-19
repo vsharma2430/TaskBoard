@@ -7,6 +7,9 @@ from server_app import *
 from server_app.misc import *
 from server_app.ui import *
 
+class DiaryString(BaseModel):
+    data : str
+    
 class DiaryEntry(ABC):
     description: str    
     job : Union[tuple,None] = None
@@ -47,7 +50,7 @@ class DiaryEntry(ABC):
                                 all_complete = False
                         
                         if(all_complete):
-                            data_list[0] = '<s>' + data_list[0] + '</s>'
+                            data_list[0] = add_start_end_tag(data_list[0],'s')
 
                     extracted_data.append({'title':data_list[0],'description':data_list[1:]} if(len(data_list)>1) else {'description':data_list})
                     
