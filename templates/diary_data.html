@@ -1,18 +1,30 @@
 <form class="p-1 wrap" style="margin:1%;margin-top:3.5%;width: 98%;word-break: break-all;">
     <textarea id="diary_textarea" class="form-control form-control-sm m-1 p-1" rows="35" type="text" placeholder="Diary Bullets" style="margin: 0.1Rem;width: 100%;height: 75%;word-wrap:normal;">{{data}}</textarea>  
 
-    <input class="form-control m-1 p-1" type="password" name="mypass" id="password" placeholder="Password">
+    <div class="d-flex m-1 p-1">
+        <button onclick="moveCursorToEnd()" class="form-control" type="button" id="new_btnClick" class="btn btn-primary m-1 p-1" >New Entry</button>
 
+        <select class="form-select m-1 p-1" aria-label="Bullet Type">
+            <option value="1" selected>Task</option>
+            <option value="2">Event</option>
+            <option value="3">Note</option>
+          </select>
+
+        <input class="form-control m-1 p-1" type="datetime-local" id="new_datetime">
+
+        <button class="form-control" type="button" id="add_datetime" class="btn btn-primary m-1 p-1" >AddDateTime</button>
+        <input class="form-control m-1 p-1" type="password" name="mypass" id="password" placeholder="Password">
+    </div>
+    
     <div class="d-grid m-1 p-1 justify-content-md-center">
         <button class="form-control" type="button" id="btnClick" class="btn btn-secondary center" >Save</button>
     </div>
 </form>
 
 <script>
-
 $(document).on('click', '#btnClick', function(){ 
     $.ajax({
-    url: 'http://wks-00105.eil.co.in:8007/diary/update/',
+    url: '/diary/update/',
     crossDomain: true,
     method: 'post',
     headers: {'accept': 'application/json'},
@@ -20,8 +32,26 @@ $(document).on('click', '#btnClick', function(){
     data: JSON.stringify({'data': $('textarea#diary_textarea').val() , 'password':$('input#password').val()})
     }).done(function(response) {console.log(response);}).fail(function(response) {alert(response);})
     });
-   //$(location).prop('href', url);
-   //$('textarea#diary_textarea').val()
 
+    function moveCursorToEnd() {
+        text = $('textarea#diary_textarea').val() + '\n';
+        $('textarea#diary_textarea').val(text);
+        const input = document.getElementById('diary_textarea');
+        const length = input.value.length;
+        input.focus();
+        input.setSelectionRange(length, length);
+    }
+
+    Date.prototype.mydt = function(){return this.getFullYear() + '-' + this.getMonth() + '-' + this.getDate() + ' '
+        + this.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + this.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + this.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+    };
+
+    $(document).ready(function() {
+        $('#add_datetime').click(function(){
+        text = $('textarea#diary_textarea').val()+ new Date($('#new_datetime').val()).mydt() + '|';
+        $('textarea#diary_textarea').val(text);
+    })}); 
+
+    
 </script>
 

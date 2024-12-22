@@ -13,11 +13,13 @@ common_context = {**nav_context,**page_context}
 # root
 @app.get('/',response_class=HTMLResponse)
 async def root(request: Request):
+    diary_context = 0
     diary = get_diary_context()
+    
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
-        context={**common_context,**diary,'diary_context':0},
+        context={**common_context,**diary,'diary_context':diary_context},
     )
 
 @app.get('/task/',response_class=HTMLResponse)
