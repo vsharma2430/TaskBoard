@@ -1,37 +1,98 @@
 <form class="p-1 wrap" style="margin:1%;margin-top:3.5%;width: 98%;word-break: break-all;">
     <textarea id="diary_textarea" class="form-control form-control-sm m-1 p-1" rows="35" type="text" placeholder="Diary Bullets" style="margin: 0.1Rem;width: 100%;height: 75%;word-wrap:normal;">{{data}}</textarea>  
 
-    <div class="d-flex m-1 p-1">
-        <button onclick="moveCursorToEnd()" class="form-control" type="button" id="new_btnClick" class="btn btn-primary m-1 p-1" >New Entry</button>
-
-        <select class="form-select m-1 p-1" aria-label="Bullet Type">
-            <option value="1" selected>Task</option>
-            <option value="2">Event</option>
-            <option value="3">Note</option>
-          </select>
-
-        <input class="form-control m-1 p-1" type="datetime-local" id="new_datetime">
-
-        <button class="form-control" type="button" id="add_datetime" class="btn btn-primary m-1 p-1" >AddDateTime</button>
-        <input class="form-control m-1 p-1" type="password" name="mypass" id="password" placeholder="Password">
-    </div>
     
-    <div class="d-grid m-1 p-1 justify-content-md-center">
+
+    <div class="d-flex flex-row">
+        <div class="d-flex flex-fill flex-column m-1 p-1">
+            <select class="form-select m-1 p-1" aria-label="Bullet Type">
+                <option value="1" selected>Task</option>
+                <option value="2">Event</option>
+                <option value="3">Note</option>
+            </select>
+
+            <button onclick="moveCursorToEnd()" class="form-control" type="button" id="new_btnClick" class="btn btn-primary m-1 p-1" >New Entry</button>
+        </div>  
+
+        <div class="d-flex flex-fill flex-column m-1 p-1">
+            <input class="form-control m-1 p-1" type="datetime-local" id="new_datetime">
+            <button class="form-control" type="button" id="add_datetime" class="btn btn-primary m-1 p-1" >AddDateTime</button>
+        </div>
+
+        <div class="d-flex flex-fill flex-column m-1 p-1">
+            <button class="form-control" type="button" id="add_link" class="btn btn-primary m-1 p-1" >AddLink</button>
+        </div>
+    </div>
+
+    <div class="d-flex m-1 p-1 justify-content-md-center">
+        <input class="form-control m-1 p-1" type="password" name="mypass" id="password" placeholder="Password">
         <button class="form-control" type="button" id="btnClick" class="btn btn-secondary center" >Save</button>
     </div>
 </form>
 
 <script>
-$(document).on('click', '#btnClick', function(){ 
-    $.ajax({
-    url: '/diary/update/',
-    crossDomain: true,
-    method: 'post',
-    headers: {'accept': 'application/json'},
-    contentType: 'application/json',
-    data: JSON.stringify({'data': $('textarea#diary_textarea').val() , 'password':$('input#password').val()})
-    }).done(function(response) {console.log(response);}).fail(function(response) {alert(response);})
-    });
+
+    function getInputSelection(el) {
+        var start = 0, end = 0, normalizedValue, range,
+            textInputRange, len, endRange;
+
+        if (typeof el.selectionStart == "number" && typeof el.selectionEnd == "number") {
+            start = el.selectionStart;
+            end = el.selectionEnd;
+        } else {
+            range = document.selection.createRange();
+
+            if (range && range.parentElement() == el) {
+                len = el.value.length;
+                normalizedValue = el.value.replace(/\r\n/g, "\n");
+
+                // Create a working TextRange that lives only in the input
+                textInputRange = el.createTextRange();
+                textInputRange.moveToBookmark(range.getBookmark());
+
+                // Check if the start and end of the selection are at the very end
+                // of the input, since moveStart/moveEnd doesn't return what we want
+                // in those cases
+                endRange = el.createTextRange();
+                endRange.collapse(false);
+
+                if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
+                    start = end = len;
+                } else {
+                    start = -textInputRange.moveStart("character", -len);
+                    start += normalizedValue.slice(0, start).split("\n").length - 1;
+
+                    if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
+                        end = len;
+                    } else {
+                        end = -textInputRange.moveEnd("character", -len);
+                        end += normalizedValue.slice(0, end).split("\n").length - 1;
+                    }
+                }
+            }
+        }
+
+        return {
+            start: start,
+            end: end
+        };
+    }
+
+    function replaceSelectedText(el, text) {
+        var sel = getInputSelection(el), val = el.value;
+        el.value = val.slice(0, sel.start) + text + val.slice(sel.end);
+    }
+
+    $(document).on('click', '#btnClick', function(){ 
+        $.ajax({
+        url: '/diary/update/',
+        crossDomain: true,
+        method: 'post',
+        headers: {'accept': 'application/json'},
+        contentType: 'application/json',
+        data: JSON.stringify({'data': $('textarea#diary_textarea').val() , 'password':$('input#password').val()})
+        }).done(function(response) {console.log(response);}).fail(function(response) {alert(response);})
+        });
 
     function moveCursorToEnd() {
         text = $('textarea#diary_textarea').val() + '\n';
@@ -42,16 +103,31 @@ $(document).on('click', '#btnClick', function(){
         input.setSelectionRange(length, length);
     }
 
-    Date.prototype.mydt = function(){return this.getFullYear() + '-' + this.getMonth() + '-' + this.getDate() + ' '
-        + this.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + this.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':' + this.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+    function min2Digits(data){
+        return data.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    }
+
+    Date.prototype.mydt = function(){return this.getFullYear() + '-' + min2Digits(this.getMonth()) + '-' + min2Digits(this.getDate()) + ' '
+        + min2Digits(this.getHours()) + ':' + min2Digits(this.getMinutes()) + ':' + min2Digits(this.getSeconds())
     };
 
     $(document).ready(function() {
         $('#add_datetime').click(function(){
-        text = $('textarea#diary_textarea').val()+ new Date($('#new_datetime').val()).mydt() + '|';
-        $('textarea#diary_textarea').val(text);
-    })}); 
 
+        var new_date = new Date($('#new_datetime').val()).mydt();
+
+        if(getSelection().toString() != '')
+        {
+            var el = document.getElementById("diary_textarea");
+            replaceSelectedText(el, new_date);
+        }
+        else
+        {
+            text = $('textarea#diary_textarea').val() + new_date + '|';
+            $('textarea#diary_textarea').val(text);
+        }
+        
+    })}); 
     
 </script>
 
