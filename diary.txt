@@ -2,16 +2,17 @@
 PyDantic and FastAPI documentation
 PyDesign , Python Data to STAAD loads , Continous beam formulation
 B416 Reference Job , Piperack && [Shared Folder -> \\10.40.43.94\b416]
+B957 Learning && STAAD Loads , Simple loads , Seismic and Wind Loads (Arjit ?) && EDB , <s> New EDB </s> , Section wise study && DFR , Divya Process && Culvert , ERG , IRC && [Open EDB -> "D:\vaibhav\JOB_WORK\B957\EDB\open_edb.bat" ]
 
 # TASKS
-2024-12-12 09:30:00 | B957 Plot Plan && Piperack , Piperack Length , ODC : General Civil , <s> Grading Drawings FGL </s> , Map FGL on Plot plan && <s> Navis (Annamalai) </s> && Manhours Excel , <s>Excel (Sadhu)</s> && [ Open Plan -> "D:\vaibhav\JOB_WORK\B957\PLOT-PLAN\open_plot_plan.bat"] && [Open Navis -> "D:\vaibhav\JOB_WORK\B957\NAVIS\open_navis.bat" ] && [GADs -> \\10.40.43.94\b957\CIVIL-GAD]  && [ Piping Navis -> \\10.40.68.227\ppr\B957\S3D-MODEL ] && [ Job Folder -> \\10.40.43.94\b957\ ]
+2024-12-12 09:30:00 | B957 Plot Plan && Piperack , Piperack Length , ODC : General Civil , <s> Grading Drawings FGL </s> , Map FGL on Plot plan ,  Road Offset Clearence , && Piping , <s> Navis (Annamalai) </s> , EDB (future space and road clearence) && BDT Layout && Manhours Excel , <s>Excel (Sadhu)</s> && [ Open Plan -> "D:\vaibhav\JOB_WORK\B957\PLOT-PLAN\open_plot_plan.bat"] && [Open Navis -> "D:\vaibhav\JOB_WORK\B957\NAVIS\open_navis.bat" ] && [GADs -> \\10.40.43.94\b957\CIVIL-GAD]  && [ Piping Navis -> \\10.40.68.227\ppr\B957\S3D-MODEL ] && [ Job Folder -> \\10.40.43.94\b957\ ]
 B957 Existing Piperack && Job : 6743, <s> Old Plot Plan  </s>, <s> Same NE? </s> && Job : A702 && Job : B109 && [Fdn Layout -> \\10.40.43.94\b957\EXISTING_DATA\FDN_LAYOUTS] && [Piperack dwgs -> \\10.40.43.94\b957\EXISTING_DATA\PIPERACK] && [Google earth -> https://earth.google.com/web/search/BPCL+Bina+refinery+1+NO.+ENTRANCE+GATE,+Bildhai+Buzurg,+Madhya+Pradesh/@24.24772164,78.14599855,435.04366367a,7519.52153975d,35y,-29.21312064h,10.76305652t,0r/data=CiwiJgokCW63I9fANDhAETfD3MsAJThAGa0iRjYEkVNAIb2vKfXqh1NAQgIIATIpCicKJQohMVlXT3hsRnc4WUR5VEhkQnlpSkozZWhLa2JrS0dYdURZIAE6AwoBMEICCABKCAiXlKbbBhAB]
 2024-12-23 12:30:00 | B957 Bina , My Activities && Precast Struts , Mortar grade (Divya) , Excel Modification && Retaining Wall , Modeling in S3D, Plot plan mark && [Drawings Ret Wall -> \\10.40.43.94\b957\RET_WALL]
-2024-12-20 09:00:00 | B957 Learning && STAAD Loads , Simple loads , Seismic and Wind Loads (Arjit ?) && EDB , <s> New EDB </s> , Section wise study && DFR && [Open EDB -> "D:\vaibhav\JOB_WORK\B957\EDB\open_edb.bat" ]
-2024-12-16 09:00:00 | 8581 Resource Planner && ITS ,<s> Vivek Sir Follow Up </s>,<s> Sukhbir Sir Oracle user </s> , Oracle sql developer , Service Name : enggdb , Oracle dev version : 21.4 && Code , <s> A207 crash </s> , A283 report incorrect |
+2024-12-16 09:00:00 | 8581 Resource Planner && ITS ,<s> Vivek Sir Follow Up </s>,<s> Sukhbir Sir Oracle user </s> ,<s> Oracle sql developer </s>, Service Name : enggdb , Oracle dev version : 21.4 && Code , <s> A207 crash </s> , A283 report incorrect |
 2024-12-16 10:30:00 | STAAD Helper, <s> TestBatcher improvements </s> , <s> TestBatcher defaults </s>
 
 # EVENTS / MEETINGS
 2024-12-12 08:30:00 to 2024-12-13 17:00:00 | bauma CONEXPO INDIA , construction equiment && [Website link -> https://bcindia.com/en/ ] && [ Registration link -> https://bcindia.com/en/trade-fair/get-your-ticket/ ]
 2024-12-13 11:15:00 to 2024-12-13 12:30:00 | Nemestcheck RISA , Multicore processing , SP3D Integration , API documentation follow-up
-2024-12-19 15:45:00 to 2024-12-19 16:30:00 | B957 Plot Plan && Gen Civil , S Arvind Harish
+2024-12-19 15:45:00 to 2024-12-19 16:30:00 | B957 Plot Plan && Gen Civil ,<s> S Arvind Harish</s>
+2024-12-23 12:00:00 to 2024-12-23 15:00:00| 8581 Overhead && SP3D , <s> Candidate Interviews (7) </s>

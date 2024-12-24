@@ -37,6 +37,7 @@ async def root(request: Request):
 async def root(request: Request):
     diary_context = 2
     diary = get_diary_context(diary_context)
+   
     return templates.TemplateResponse(
         request=request, 
         name=template_home, 
