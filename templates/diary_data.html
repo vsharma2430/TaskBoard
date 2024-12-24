@@ -18,6 +18,7 @@
                 <input class="form-control p-1" type="datetime-local" id="new_end_datetime" style="margin: 0.1rem;width: 20rem;">
             </div>
         <button class="form-control" type="button" id="add_datetime" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Add/Edit DateTime</button>
+        <button class="form-control" type="button" id="add_complete_tag" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;" disabled>Completed tag</button>
         </div>
 
         <div class="d-flex flex-fill flex-column m-1 p-1">
@@ -173,7 +174,7 @@
             }
             else
             {
-                text = $('textarea#diary_textarea').val() + ' | ' + sample_note ;
+                text = $('textarea#diary_textarea').val() + sample_note ;
                 $('textarea#diary_textarea').val(text);
             }
     })}); 
