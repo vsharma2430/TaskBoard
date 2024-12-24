@@ -17,8 +17,9 @@
                 <input class="form-control p-1" type="datetime-local" id="new_start_datetime" style="margin: 0.1rem;width: 20rem;">
                 <input class="form-control p-1" type="datetime-local" id="new_end_datetime" style="margin: 0.1rem;width: 20rem;">
             </div>
-        <button class="form-control" type="button" id="add_datetime" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Add/Edit DateTime</button>
-        <button class="form-control" type="button" id="add_complete_tag" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;" disabled>Completed tag</button>
+            <button class="form-control" type="button" id="add_datetime" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Add/Edit DateTime</button>
+            <button class="form-control" type="button" id="add_complete_tag" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Completed tag</button>
+            <button class="form-control" type="button" id="add_complete_tag" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Attended tag</button>
         </div>
 
         <div class="d-flex flex-fill flex-column m-1 p-1">
@@ -92,6 +93,14 @@
         return val.slice(sel.start,sel.end);
     }
 
+    const insertText = (textarea, text) => {
+        const position = textarea.selectionStart;
+        const before = textarea.value.substring(0, position);
+        const after = textarea.value.substring(position, textarea.value.length);
+        textarea.value = before + text + after;
+        textarea.selectionStart = textarea.selectionEnd = position + text.length;
+    };
+
     $(document).on('click', '#btnClick', function(){ 
         $.ajax({
         url: '/diary/update/',
@@ -116,6 +125,8 @@
         return data.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     }
 
+    var el = document.getElementById("diary_textarea");
+
     Date.prototype.mydt = function(){return this.getFullYear() + '-' + min2Digits(this.getMonth()+1) + '-' + min2Digits(this.getDate()) + ' '
         + min2Digits(this.getHours()) + ':' + min2Digits(this.getMinutes()) + ':' + min2Digits(this.getSeconds())
     };
@@ -136,54 +147,59 @@
 
         if(getSelection().toString() != '')
         {
-            var el = document.getElementById("diary_textarea");
             replaceSelectedText(el, new_date);
         }
         else
         {
-            text = $('textarea#diary_textarea').val() + new_date + '|';
-            $('textarea#diary_textarea').val(text);
+            insertText(el,new_date + '|');
         }
-        
     })}); 
 
-    sample_link = '[link name -> link address]';
+    sample_link = ' && [link name -> link address]';
 
     $(document).ready(function() {
         $('#add_link').click(function(){
             if(getSelection().toString() != '')
             {
-                var el = document.getElementById("diary_textarea");
                 replaceSelectedText(el, sample_link);
             }
             else
             {
-                text = $('textarea#diary_textarea').val() + ' && ' + sample_link;
-                $('textarea#diary_textarea').val(text);
+                insertText(el,sample_link)
             }
     })}); 
 
-    sample_note = 'job code(4 digits) job description (optional) && main topic 1 , point 11 , point 12 && main topic 2 , point 21 , point 22'
+    sample_note = ' | job code(4 digits) job description (optional) && main topic 1 , point 11 , point 12 && main topic 2 , point 21 , point 22'
 
     $(document).ready(function() {
         $('#add_note').click(function(){
             if(getSelection().toString() != '')
             {
-                var el = document.getElementById("diary_textarea");
                 replaceSelectedText(el, sample_note);
             }
             else
             {
-                text = $('textarea#diary_textarea').val() + sample_note ;
-                $('textarea#diary_textarea').val(text);
+                insertText(el,sample_note);
             }
     })}); 
 
     $(document).ready(function() {
         $('#strike_out_line').click(function(){
-        var el = document.getElementById("diary_textarea");
         selected_text = getSelectedText(el);
         replaceSelectedText(el ,'<s>' + selected_text + '</s>');
+    })}); 
+
+    complete_tag = ' | done'
+    $(document).ready(function() {
+        $('#add_complete_tag').click(function(){
+            if(getSelection().toString() != '')
+            {
+                replaceSelectedText(el, complete_tag);
+            }
+            else
+            {
+                insertText(el,complete_tag);
+            }
     })}); 
     
 </script>
