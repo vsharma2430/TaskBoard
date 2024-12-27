@@ -32,9 +32,9 @@
             {% endif %}
         </span>
 
-        <form class="d-flex" role="search" style="margin: 0.5rem;">
+        <form id="search_form" class="d-flex" role="search" style="margin: 0.5rem;">
             <input class="form-control me-2" type="search" id="search_string" placeholder="Search" aria-label="Search" value="{{nav_context.search_string}}">
-            <button class="btn btn-sm btn-outline-success" id="search_button">Search</button>
+            <button class="btn btn-sm btn-outline-success" id="search_button" type="submit">Search</button>
         </form>
         
         <button class="btn btn-sm btn-secondary" href="/" style="margin: 0.5rem;min-height: 2.5rem;" disabled>Sign up</button>

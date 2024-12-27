@@ -30,10 +30,10 @@ def get_diary_context(sub_part:int=0,search:list | None = None):
     
     searched_diary = []
     if(search!=None and len(search)!=0):
-        list_map(search,str.lower)
+        search = list_map(search,str.lower)
         for d_obj in diary_objects:
             for sx in search:
-                if(sx in d_obj.description):
+                if(sx in d_obj.description.lower()):
                     searched_diary.append(d_obj)
                     break
     else:

@@ -14,6 +14,6 @@ B957 Existing Piperack && Job : 6743, <s> Old Plot Plan  </s>, <s> Same NE? </s>
 
 # EVENTS / MEETINGS
 2024-12-12 08:30:00 to 2024-12-13 17:00:00 | bauma CONEXPO INDIA , construction equiment && [Website link -> https://bcindia.com/en/ ] && [ Registration link -> https://bcindia.com/en/trade-fair/get-your-ticket/ ]
-2024-12-13 11:15:00 to 2024-12-13 12:30:00 | Nemestcheck RISA , Multicore processing , SP3D Integration , API documentation follow-up
+2024-12-13 11:15:00 to 2024-12-13 12:30:00 | Nemestcheck RISA , Multicore processing , SP3D Integration , API  <sub> documentation </sub>  follow-up
 2024-12-19 15:45:00 to 2024-12-19 16:30:00 | B957 Plot Plan && Gen Civil ,<s> S Arvind Harish</s>
 2024-12-23 12:00:00 to 2024-12-23 15:00:00| 8581 Overhead && SP3D , <s> Candidate Interviews (7) </s>

@@ -15,6 +15,7 @@ def refresh_context():
 
 # root
 @app.get('/',response_class=HTMLResponse)
+@app.get('/home',response_class=HTMLResponse)
 async def root(request: Request, search: str | None = None):
     refresh_context()
     diary_context = 0
