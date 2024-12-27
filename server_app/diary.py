@@ -25,10 +25,22 @@ def load_diary(file_location:str='diary.txt'):
             diary_objects.append(Note(description=data_items[0]))
     return diary_objects
 
-def get_diary_context(sub_part:int=0):
+def get_diary_context(sub_part:int=0,search:list | None = None):
     diary_objects = load_diary()
-    diary = {}
+    
+    searched_diary = []
+    if(search!=None and len(search)!=0):
+        list_map(search,str.lower)
+        for d_obj in diary_objects:
+            for sx in search:
+                if(sx in d_obj.description):
+                    searched_diary.append(d_obj)
+                    break
+    else:
+        searched_diary = diary_objects
 
+    diary_objects = searched_diary
+    
     task_list_obj = clean_list([dx if type(dx) == Task else None for dx in diary_objects])
     event_list_obj = clean_list([dx if type(dx) == Event else None for dx in diary_objects])
     note_list_obj = clean_list([dx if type(dx) == Note else None for dx in diary_objects])

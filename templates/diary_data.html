@@ -18,14 +18,25 @@
                 <input class="form-control p-1" type="datetime-local" id="new_end_datetime" style="margin: 0.1rem;width: 20rem;">
             </div>
             <button class="form-control" type="button" id="add_datetime" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Add/Edit DateTime</button>
-            <button class="form-control" type="button" id="add_complete_tag" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Completed tag</button>
-            <button class="form-control" type="button" id="add_complete_tag" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Attended tag</button>
+            <div class="d-flex flex-row">
+                <button class="form-control" type="button" id="add_complete_tag" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Completed tag</button>
+                <button class="form-control" type="button" id="add_complete_tag" class="btn btn-primary m-1 p-1" style="margin: 0.1rem;">Attended tag</button>
+            </div>
         </div>
 
         <div class="d-flex flex-fill flex-column m-1 p-1">
             <button class="form-control" type="button" id="add_note" class="btn btn-primary p-1" style="margin: 0.1rem;">Add Content</button>
             <button class="form-control" type="button" id="add_line" class="btn btn-primary p-1" style="margin: 0.1rem;" disabled>Add Line</button>
-            <button class="form-control" type="button" id="strike_out_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Strike-Out Line</button>
+            <div class="d-flex flex-row">
+                <button class="form-control" type="button" id="bold_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Bold</button>
+                <button class="form-control" type="button" id="italic_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Italic</button>
+                <button class="form-control" type="button" id="strike_out_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Strike-Out Line</button>
+            </div>
+            <div class="d-flex flex-row">
+                <button class="form-control" type="button" id="bold_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Bold</button>
+                <button class="form-control" type="button" id="italic_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Italic</button>
+                <button class="form-control" type="button" id="strike_out_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Strike-Out Line</button>
+            </div>
         </div>
 
         <div class="d-flex flex-fill flex-column m-1 p-1">
@@ -183,10 +194,23 @@
             }
     })}); 
 
+    function enclose_selected_text(tag_name)
+    {
+        selected_text = getSelectedText(el);
+        replaceSelectedText(el ,` <${tag_name}> ${selected_text} </${tag_name}> `);
+    }
+
     $(document).ready(function() {
         $('#strike_out_line').click(function(){
-        selected_text = getSelectedText(el);
-        replaceSelectedText(el ,'<s>' + selected_text + '</s>');
+        enclose_selected_text('s');
+    })}); 
+    $(document).ready(function() {
+        $('#bold_line').click(function(){
+        enclose_selected_text('b');
+    })}); 
+    $(document).ready(function() {
+        $('#italic_line').click(function(){
+        enclose_selected_text('i');
     })}); 
 
     complete_tag = ' | done'

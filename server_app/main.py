@@ -12,9 +12,14 @@ common_context = {**nav_context,**page_context}
 
 # root
 @app.get('/',response_class=HTMLResponse)
-async def root(request: Request):
+async def root(request: Request, search: str | None = None):
     diary_context = 0
-    diary = get_diary_context()
+    search_list = []
+    if(search !=  None and search != ''):
+        search_list = search.split(',')
+        nav_context['nav_context']['nav_sub_title'] = f'{search}'
+        nav_context['nav_context']['search_string'] = f'{search}'
+    diary = get_diary_context(search=search_list)
     
     return templates.TemplateResponse(
         request=request, 

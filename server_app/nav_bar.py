@@ -1,4 +1,5 @@
-nav_props = {'nav_title':'TaskBoard',
+nav_props = {'nav_title':'TaskBoard','nav_sub_title':'',
+             'search_string':'',
              'nav_list':[{ 'caption': 'Home' , 'href' : f'/' ,},
                         { 'caption': 'Tasks' , 'href' : f'/task/' ,},
                         { 'caption': 'Notes' , 'href' : f'/note/',},
