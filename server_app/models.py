@@ -2,7 +2,7 @@ from re import search
 from datetime import datetime as dt
 from abc import ABC, abstractmethod
 from pydantic import BaseModel
-from typing import Union
+from typing import Union,ClassVar
 from server_app import *
 from server_app.misc import *
 from server_app.ui import *
@@ -16,6 +16,9 @@ class DiaryEntry(ABC):
     job : Union[tuple,None] = None
     data : Union[list,None] = []
     link : Union[list,None] = []
+    
+    url:ClassVar[str] = 'home'
+    context_no:ClassVar[int] = 0
 
     #format -> job,job_desc && header1,data1 && header2,data2,data3 && [linkTitle1 -> link address1] && [linkTitle2 -> link address2] ...
 
@@ -89,6 +92,9 @@ class Event(BaseModel,DiaryEntry):
     level: Union[int, None] = None
     attended: Union[bool, None] = False
 
+    url:ClassVar[str] = 'event'
+    context_no:ClassVar[int] = 2
+    
     def get_context(self):
         self.parse_data()
 
@@ -111,6 +117,9 @@ class Task(BaseModel,DiaryEntry):
     description: str    
     level: Union[int, None] = None
     is_complete: Union[bool, None] = False
+    
+    url:ClassVar[str] = 'task'
+    context_no:ClassVar[int] = 1
 
     @staticmethod
     def is_complete_status_parse(data:str):
@@ -150,6 +159,9 @@ class Task(BaseModel,DiaryEntry):
     
 class Note(BaseModel,DiaryEntry):
     level: Union[int, None] = None
+
+    url:ClassVar[str] = 'note'
+    context_no:ClassVar[int] = 3
 
     def get_context(self):
         self.parse_data()

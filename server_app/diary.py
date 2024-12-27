@@ -25,6 +25,13 @@ def load_diary(file_location:str='diary.txt'):
             diary_objects.append(Note(description=data_items[0]))
     return diary_objects
 
+def get_diary_context_search_managed(diary_context=0,search=None,nav_context={}):
+    search_list = []
+    if(search !=  None and search != ''):
+        search_list = search.split(',')
+        nav_context['nav_context']['search_string'] = f'{search}'
+    return get_diary_context(sub_part=diary_context,search=search_list)
+
 def get_diary_context(sub_part:int=0,search:list | None = None):
     diary_objects = load_diary()
     
@@ -66,5 +73,6 @@ def get_diary_context(sub_part:int=0,search:list | None = None):
         diary = {'events' : event_context}    
     elif(sub_part == 3):
         diary = {'notes': note_context}     
-
+    
+    diary['diary_context'] = sub_part
     return diary
