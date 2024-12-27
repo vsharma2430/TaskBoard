@@ -33,9 +33,9 @@
                 <button class="form-control" type="button" id="strike_out_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Strike-Out Line</button>
             </div>
             <div class="d-flex flex-row">
-                <button class="form-control" type="button" id="bold_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Bold</button>
-                <button class="form-control" type="button" id="italic_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Italic</button>
-                <button class="form-control" type="button" id="strike_out_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Strike-Out Line</button>
+                <button class="form-control" type="button" id="small_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Small</button>
+                <button class="form-control" type="button" id="sub_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Sub-case</button>
+                <button class="form-control" type="button" id="sup_line" class="btn btn-primary p-1" style="margin: 0.1rem;">Sup-case</button>
             </div>
         </div>
 
@@ -211,6 +211,19 @@
     $(document).ready(function() {
         $('#italic_line').click(function(){
         enclose_selected_text('i');
+    })}); 
+
+    $(document).ready(function() {
+        $('#small_line').click(function(){
+        enclose_selected_text('small');
+    })}); 
+    $(document).ready(function() {
+        $('#sub_line').click(function(){
+        enclose_selected_text('sub');
+    })}); 
+    $(document).ready(function() {
+        $('#sup_line').click(function(){
+        enclose_selected_text('sup');
     })}); 
 
     complete_tag = ' | done'
