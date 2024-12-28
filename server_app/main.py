@@ -3,12 +3,12 @@ from fastapi import Request
 from fastapi.responses import HTMLResponse,JSONResponse,FileResponse
 from server_app import *
 from server_app.models import *
-from server_app.nav_bar import nav_context,refresh_context
+from server_app.nav_bar import nav_context,refresh_context,quote_context
 from server_app.misc import *
 from server_app.diary import get_diary_context_search_managed
 
 page_context = {'mode':'dark' if(18 <= dt.now().time().hour <= 24 or 0 <= dt.now().time().hour <= 8) else 'light'}
-common_context = {**nav_context,**page_context}
+common_context = {**nav_context,**page_context,**quote_context}
 
 # root
 @app.get('/',response_class=HTMLResponse)

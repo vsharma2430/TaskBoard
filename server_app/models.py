@@ -124,7 +124,7 @@ class Task(BaseModel,DiaryEntry):
     @staticmethod
     def is_complete_status_parse(data:str):
         check = data.lower()
-        if('y' in check or 'done' in check or 'yes' in check):
+        if('y' in check or 'done' in check):
             return True
         return False
 
@@ -171,3 +171,18 @@ class Note(BaseModel,DiaryEntry):
             'level':self.level,
             'opacity': note_opacity
         }
+    
+class Quote(BaseModel):
+    quote_data:str
+    citation:str
+
+    def get_context(self):
+        return {
+            'quote':self.quote_data,
+            'cite': self.citation
+        }
+
+class User(BaseModel):
+    user_id:str
+    user_name:str
+    email_id:Union[str, None] = None

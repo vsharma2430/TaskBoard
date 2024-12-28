@@ -180,7 +180,7 @@
             }
     })}); 
 
-    sample_note = ' | job code(4 digits) job description (optional) && main topic 1 , point 11 , point 12 && main topic 2 , point 21 , point 22'
+    sample_note = 'job code(4 digits) job description (optional) && main topic 1 , point 11 , point 12 && main topic 2 , point 21 , point 22'
 
     $(document).ready(function() {
         $('#add_note').click(function(){
@@ -226,7 +226,7 @@
         enclose_selected_text('sup');
     })}); 
 
-    complete_tag = ' | done'
+    complete_tag = ' | done by (name1/id1,name2/id2,...)'
     $(document).ready(function() {
         $('#add_complete_tag').click(function(){
             if(getSelection().toString() != '')
