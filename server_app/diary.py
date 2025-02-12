@@ -6,8 +6,8 @@ from server_app import *
 def load_diary(file_location:str='diary.txt'):
     diary_objects = []
     data = read_file(file_location=file_location)
-    
-    for dataX in clean_list_str_diary(data) :
+    data = clean_list_str_diary(data)
+    for dataX in data:
         data_items = list_map(dataX.split('|'))
         len_data = len(data_items)
         
@@ -40,7 +40,9 @@ def get_diary_context(sub_part:int=0,search:list | None = None):
         search = list_map(search,str.lower)
         for d_obj in diary_objects:
             for sx in search:
-                if(sx in d_obj.description.lower()):
+                desc_lower = d_obj.description.lower()
+                all_found = True
+                if(sx in desc_lower):
                     searched_diary.append(d_obj)
                     break
     else:

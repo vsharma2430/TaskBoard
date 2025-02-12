@@ -1,7 +1,7 @@
 <div class="card" style="margin:1%;">
 
     <div class="card-header display-6" style="font-size: 1.5rem;">
-        <span class="opacity-75">Bullet types</span>
+        <span class="opacity-75">Basic Objects</span>
     </div>
 
     <div class="card" style="margin:1%;">
@@ -37,6 +37,28 @@
     <div class="card" style="margin:1%;">
 
         <div class="card-header" >
+            <span class="opacity-75">Event (Self)</span>
+        </div>
+    
+        <div class="card-body" style="font-family: monospace;">
+            <code>
+                <strong style="color: rgb(80, 200, 0);">yyyy-mm-dd hh:mm:ss to yyyy-mm-dd hh:mm:ss | </strong>job code(4 digits) job description (optional) && main topic 1 , point 11 , point 12 , ... && main topic 2 , point 21 , point 22 ... && [link name 1 -> link address 1 ] && [link name 2 -> link address 2 ] ...
+            </code>
+        </div>
+    </div>
+
+   
+</div>
+
+<div class="card" style="margin:1%;">
+
+    <div class="card-header display-6" style="font-size: 1.5rem;">
+        <span class="opacity-75">Advanced Objects</span>
+    </div>
+
+    <div class="card" style="margin:1%;">
+
+        <div class="card-header" >
             <span class="opacity-75">Task (Allotment and Status)</span>
         </div>
     
@@ -49,11 +71,10 @@
         </div>
     </div>
 
-
     <div class="card" style="margin:1%;">
 
         <div class="card-header" >
-            <span class="opacity-75">Event</span>
+            <span class="opacity-75">Event (Invitations)</span>
         </div>
     
         <div class="card-body" style="font-family: monospace;">
@@ -63,26 +84,42 @@
         </div>
     </div>
 
+
+    
+    
+
+
 </div>
 
-<div class="card" style="margin:1%;">
+<div class="card d-flex flex-row" style="margin:1%;">
 
     <div class="card-header display-6" style="font-size: 1.5rem;">
-        <span class="opacity-75">Advanced Objects</span>
+        <span class="opacity-75">Text Edit</span>
     </div>
 
-    <div class="card" style="margin:1%;">
+    {% with header='StrikeOut',tag='s' %}
+        {% include 'help_card.html' %}
+    {% endwith %}
 
-        <div class="card-header" >
-            <span class="opacity-75">Strike out</span>
-        </div>
-    
-        <div class="card-body" style="font-family: monospace;">
-            <code>
-                &lt;s&gt; data &lt;/s&gt;
-            </code>
-        </div>
-    </div>
+    {% with header='Small',tag='small' %}
+        {% include 'help_card.html' %}
+    {% endwith %}
+
+    {% with header='Bold',tag='b' %}
+        {% include 'help_card.html' %}
+    {% endwith %}
+
+    {% with header='Italic',tag='i' %}
+        {% include 'help_card.html' %}
+    {% endwith %}
+
+    {% with header='Super-case',tag='sup' %}
+        {% include 'help_card.html' %}
+    {% endwith %}
+
+    {% with header='Sub-case',tag='sub' %}
+        {% include 'help_card.html' %}
+    {% endwith %}
 
     <div class="card" style="margin:1%;">
 
@@ -100,6 +137,5 @@
             </code>
         </div>
     </div>
-
 
 </div>

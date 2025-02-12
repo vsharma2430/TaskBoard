@@ -97,7 +97,7 @@ class Event(BaseModel,DiaryEntry):
     
     def get_context(self):
         self.parse_data()
-
+        
         return {
             **self.get_subcontext(),
             'start_date':date_display(self.dt_stamp_start),
@@ -133,7 +133,7 @@ class Task(BaseModel,DiaryEntry):
         self.auto_done()
 
         lag_days = lag_display_days(start=self.dt_stamp,end=dt.now())
-        lag_hours = lag_display_hours(start=self.dt_stamp,end=dt.now())
+        lag_hours = 0 if lag_days>=3 else lag_display_hours(start=self.dt_stamp,end=dt.now())
         card_class = ''
 
         if(self.is_complete == False):

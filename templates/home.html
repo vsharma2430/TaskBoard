@@ -14,7 +14,7 @@
 
           {% if tasks %}
           <div class="card p-1" style="margin: 1%; {% if diary_context == 1 %} width: 98%; {% else %} width: 48%; {% endif %}">
-            <p class="display-6" style="margin: 1%;">TASKS <sup class="opacity-50">{{tasks|length}}</sup></p>
+            <p class="display-6" style="margin: 1%;"><a class="link-underline link-underline-opacity-0" href="/task">TASKS </a><sup class="opacity-50">{{tasks|length}}</sup></p>
 
             <div class="d-flex flex-wrap justify-content-start" style="display:flex; flex-direction: row;" style="margin: 1%; width: 48%;">
 
@@ -29,7 +29,7 @@
 
           {% if notes %}
           <div class="card p-1" style="margin: 1%; {% if diary_context == 3 %} width: 98%; {% else %} width: 24%; {% endif %}">
-            <p class="display-6" style="margin: 1%;">NOTES <sup class="opacity-50">{{notes|length}}</sup></p>
+            <p class="display-6" style="margin: 1%;"><a class="link-underline link-underline-opacity-0" href="/note">NOTES </a><sup class="opacity-50">{{notes|length}}</sup></p>
             {% for note in notes %}
               {% include 'note_box.html' %}
             {% endfor %}
@@ -38,7 +38,7 @@
 
           {% if events %}
           <div class="card p-1" style="margin: 1%; {% if diary_context == 2 %} width: 98%; {% else %} width: 24%; {% endif %}">
-            <p class="display-6" style="margin: 1%;">MEETINGS <sup class="opacity-50">{{events|length}}</sup></p>
+            <p class="display-6" style="margin: 1%;"><a class="link-underline link-underline-opacity-0" href="/event">MEETINGS </a> <sup class="opacity-50">{{events|length}}</sup></p>
             {% for event in events %}
               {% include 'event_box.html' %}
             {% endfor %}
