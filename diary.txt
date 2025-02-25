@@ -1,6 +1,6 @@
 # NOTES
-PyDantic and FastAPI documentation
-&& Flask
+Python , PyDantic , FastAPI documentation
+&& ,Flask
 PyDesign , Python Data to STAAD loads , Continuous beam formulation
 B416 Reference Job , Piperack && [Shared Folder -> \\10.40.43.32\b416]
 B957 Learning && STAAD Loads , Simple loads , Seismic and Wind Loads (Arjit ?) && EDB , <s> New EDB </s> , Section wise study && DFR , Divya Process && Culvert , ERG , IRC && [Open EDB -> "D:\vaibhav\JOB_WORK\B957\EDB\open_edb.bat" ]
